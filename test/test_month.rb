@@ -37,4 +37,20 @@ EOS
     assert_equal expected, m.to_s
   end
 
+  def test_for_march
+    m = Month.new(05, 2009)
+    assert_equal m.m_name, "May"
+    assert_equal m.year, 2009
+  end
+
+  def test_for_january
+    m = Month.new(01, 2010)
+    assert_equal m.m_name, "January"
+  end
+
+  def test_for_november
+    m = Month.new(11, 2030)
+    assert_equal m.m_name, "November"
+  end
+
 end
