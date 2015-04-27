@@ -1,7 +1,7 @@
 
 class Month
 
-  attr_reader :month, :year, :days, :new_day
+  attr_reader :month, :year
 
   def initialize(month, year)
     @month = month
@@ -32,26 +32,36 @@ EOS
       11 => "November",
       12 => "December"
       }
-      m_name[@month]
+      m_name[month]
+  end
+
+  def m_length
+    if month == 1 || month == 3 || month == 7 || month == 8 || month == 10 || month == 12
+      return 31
+    elsif month == 4 || month == 6 || month == 9 || month == 11
+      return 30
+    elsif month == 2 && (year % 4 == 0 || (year % 100 == 0 && year % 400 == 0))
+      29
+    else
+      28
+    end
   end
 
   def days
-    day = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
-    #day = day.each_slice(7)
-    day = day.collect { |x| x.inspect }
-    
-    return day.join(" ")
-  end
+    new_line = "\n"
+    one_space = " "
+    day = (1..m_length)
 
-  def space_str
-    if x.to_s.size == 1
-      days << "  "
-    else
-      if x.size == 2
-        days << " "
+    day2 = day.each_with_index.map do |x, i|
+      if x % 7 > 0
+        (i + 1).to_s.rjust(2)
+      elsif i % 7 == 0
+        i.to_s.lstrip
+      elsif x % 7 == 0
+        x.to_s.rjust(2) + new_line
       end
     end
-
+    day2.join(" ")
   end
 
 
