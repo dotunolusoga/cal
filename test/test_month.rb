@@ -19,6 +19,7 @@ Su Mo Tu We Th Fr Sa
 15 16 17 18 19 20 21
 22 23 24 25 26 27 28
 29 30 31
+
 EOS
     assert_equal expected, m.to_s
   end
@@ -33,6 +34,37 @@ Su Mo Tu We Th Fr Sa
 15 16 17 18 19 20 21
 22 23 24 25 26 27 28
 29 30 31
+
+EOS
+    assert_equal expected, m.to_s
+  end
+
+  def test_to_s_on_june_2015
+    m = Month.new(06, 2015)
+    expected = <<EOS
+     June 2015
+Su Mo Tu We Th Fr Sa
+    1  2  3  4  5  6
+ 7  8  9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29 30
+
+EOS
+    assert_equal expected, m.to_s
+  end
+
+  def test_to_s_on_sept_2015
+    m = Month.new(9, 2015)
+    expected = <<EOS
+   September 2015
+Su Mo Tu We Th Fr Sa
+       1  2  3  4  5
+ 6  7  8  9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30
+
 EOS
     assert_equal expected, m.to_s
   end
@@ -40,13 +72,14 @@ EOS
   def test_days
     m = Month.new(02, 2014)
     expected = <<EOS
-    February 2014
+   February 2014
 Su Mo Tu We Th Fr Sa
                    1
  2  3  4  5  6  7  8
  9 10 11 12 13 14 15
 16 17 18 19 20 21 22
 23 24 25 26 27 28
+
 EOS
     assert_equal expected, m.to_s
   end

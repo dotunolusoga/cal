@@ -1,4 +1,6 @@
 
+require_relative "day"
+
 class Month
 
   attr_reader :month, :year
@@ -7,15 +9,6 @@ class Month
     @month = month
     @year = year
     @days = days
-  end
-
-
-  def to_s
-    <<EOS
-    #{m_name} #{year}
-Su Mo Tu We Th Fr Sa
-#{days}
-EOS
   end
 
   def m_name
@@ -47,22 +40,39 @@ EOS
     end
   end
 
-  def days
-    new_line = "\n"
-    one_space = " "
-    day = (1..m_length)
-
-    day2 = day.each_with_index.map do |x, i|
-      if x % 7 > 0
-        (i + 1).to_s.rjust(2)
-      elsif i % 7 == 0
-        i.to_s.lstrip
-      elsif x % 7 == 0
-        x.to_s.rjust(2) + new_line
-      end
-    end
-    day2.join(" ")
+  def weeks
+    "Su Mo Tu We Th Fr Sa"
   end
 
+
+  def days
+    new_line = "\n"
+    day = (1..m_length).to_a
+    days_in_month = ''
+    count = " "
+    d = Day.new(month, year)
+    day_start = d.zellers
+
+    day_start = day_start.to_i
+    (day_start - 1).times do
+      day.unshift(count)
+    end
+
+    day.each_slice(7) do |i|
+      days_in_month << i.map { |i| i.to_s.rjust(2) }.join(" ") + new_line
+    end
+    line_count = days_in_month.lines.count
+    if line_count == 4
+      days_in_month << new_line + new_line
+    elsif line_count == 5
+      days_in_month << new_line
+    else
+    days_in_month
+    end
+  end
+
+  def to_s
+    string = ("#{m_name} #{year}").center(20).rstrip + "\n" + "#{weeks}" + "\n" + "#{days}"
+  end
 
 end
