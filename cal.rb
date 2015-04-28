@@ -1,19 +1,19 @@
 #!/usr/bin/env ruby
 
-require_relative 'lib/month'
+require_relative './lib/month'
 
 month = ARGV[0].to_i
 year = ARGV[1].to_i
-#puts `cal #{month} #{year}`
 
 m = Month.new(month, year)
+#y = Year.new(year)
 
 def arg_error
-  print "Date not in acceptable format/range"
+  puts "Date not in acceptable format/range"
 end
 
-if ARGV.empty?
+if ARGV.empty? || year < 1800 || year > 3000
   arg_error
 else
-  m.to_s
+  puts m.to_s
 end
