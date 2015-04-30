@@ -11,9 +11,9 @@ class TestYear < Minitest::Test
   def test_year_2012
     y = Year.new(2012)
     expected = <<EOS
-                         2012
+                        2012
 
-       January               February               March
+    January              February              March
 Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
  1  2  3  4  5  6  7            1  2  3  4               1  2  3
  8  9 10 11 12 13 14   5  6  7  8  9 10 11   4  5  6  7  8  9 10
@@ -21,7 +21,7 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 22 23 24 25 26 27 28  19 20 21 22 23 24 25  18 19 20 21 22 23 24
 29 30 31              26 27 28 29           25 26 27 28 29 30 31
 
-      April                  May                   June
+     April                  May                 June
 Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
  1  2  3  4  5  6  7         1  2  3  4  5                  1  2
  8  9 10 11 12 13 14   6  7  8  9 10 11 12   3  4  5  6  7  8  9
@@ -29,7 +29,7 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 22 23 24 25 26 27 28  20 21 22 23 24 25 26  17 18 19 20 21 22 23
 29 30                 27 28 29 30 31        24 25 26 27 28 29 30
 
-      July                 August              September
+     July                 August             September
 Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
  1  2  3  4  5  6  7            1  2  3  4                     1
  8  9 10 11 12 13 14   5  6  7  8  9 10 11   2  3  4  5  6  7  8
@@ -37,7 +37,7 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 22 23 24 25 26 27 28  19 20 21 22 23 24 25  16 17 18 19 20 21 22
 29 30 31              26 27 28 29 30 31     23 24 25 26 27 28 29
                                             30
-    October               November              December
+    October              November             December
 Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
     1  2  3  4  5  6               1  2  3                     1
  7  8  9 10 11 12 13   4  5  6  7  8  9 10   2  3  4  5  6  7  8
@@ -53,9 +53,9 @@ EOS
   def test_leap_year
     y = Year.new(2004)
     expected = <<EOS
-                           2004
+                        2004
 
-     January               February               March
+    January              February              March
 Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
              1  2  3   1  2  3  4  5  6  7      1  2  3  4  5  6
  4  5  6  7  8  9 10   8  9 10 11 12 13 14   7  8  9 10 11 12 13
@@ -63,15 +63,16 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 18 19 20 21 22 23 24  22 23 24 25 26 27 28  21 22 23 24 25 26 27
 25 26 27 28 29 30 31  29                    28 29 30 31
 
-      April                  May                   June
+     April                  May                 June
 Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
              1  2  3                     1         1  2  3  4  5
  4  5  6  7  8  9 10   2  3  4  5  6  7  8   6  7  8  9 10 11 12
 11 12 13 14 15 16 17   9 10 11 12 13 14 15  13 14 15 16 17 18 19
 18 19 20 21 22 23 24  16 17 18 19 20 21 22  20 21 22 23 24 25 26
 25 26 27 28 29 30     23 24 25 26 27 28 29  27 28 29 30
-30 31
-      July                 August              September
+                      30 31
+
+     July                 August             September
 Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
              1  2  3   1  2  3  4  5  6  7            1  2  3  4
  4  5  6  7  8  9 10   8  9 10 11 12 13 14   5  6  7  8  9 10 11
@@ -79,7 +80,7 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 18 19 20 21 22 23 24  22 23 24 25 26 27 28  19 20 21 22 23 24 25
 25 26 27 28 29 30 31  29 30 31              26 27 28 29 30
 
-    October               November              December
+    October              November             December
 Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
                 1  2      1  2  3  4  5  6            1  2  3  4
  3  4  5  6  7  8  9   7  8  9 10 11 12 13   5  6  7  8  9 10 11
@@ -89,10 +90,11 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 31
 
 EOS
-  assert_equal expected, year_cal
+  assert_equal expected, y.year_cal
   end
 
   def test_for_minimum_year
+    skip
     y = Year.new(1800)
     expected = <<EOS
                         1800
@@ -131,10 +133,11 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 30
 
 EOS
-    assert_equal expected, year_cal
+    assert_equal expected, y.year_cal
   end
 
   def test_for_maximum_year
+    skip
     y = Year.new(3000)
     expected = <<EOS
                          3000
@@ -174,6 +177,6 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 
 
 EOS
-    assert_equal expected, year_cal
+    assert_equal expected, y.year_cal
   end
 end
